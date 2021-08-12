@@ -1,3 +1,6 @@
 [submodule "libGUI3D"]
 	path = libGUI3D
 	url = git@github.com:PNeigel/libGUI3D.git
+[submodule "ORUtils"]
+	path = ORUtils
+	url = git@github.com:PNeigel/ORUtils.git
