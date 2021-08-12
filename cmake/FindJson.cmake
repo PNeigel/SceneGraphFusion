@@ -12,6 +12,7 @@ FIND_PATH(JSON_INCLUDE_DIR NAMES json11.hpp
 FIND_LIBRARY(JSON_LIBRARY
         NAMES
         libjson11.a
+        json11.lib
         PATHS
         ${PROJECT_SOURCE_DIR}/external/lib/
         ${PROJECT_SOURCE_DIR}/external/lib/${CMAKE_LIBRARY_ARCHITECTURE}
