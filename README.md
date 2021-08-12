@@ -56,7 +56,7 @@ git submodule init
 git submodule update
 mkdir build
 cd build
-cmake .. -DOpenCV_CONFIG_DIR:PATH=path/to/your/OpenCVConfig.cmake
+cmake .. -DOpenCV_CONFIG_DIR:PATH=path/to/your/OpenCVConfig.cmake -DGLFW_LOCATION:PATH=path/to/GLFW
 make
 ```
 build with GUI or graph prediction, pass these options in cmake:

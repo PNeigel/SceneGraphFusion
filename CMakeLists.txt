@@ -43,7 +43,8 @@ INCLUDE(UseOpenMP)
 if(APPLE)
 	set(INSEG_LIB ${PROJECT_SOURCE_DIR}/lib/libInSegLib_osx.a)
 else()
-	set(INSEG_LIB ${PROJECT_SOURCE_DIR}/lib/libInSegLib_linux.a)
+	#set(INSEG_LIB ${PROJECT_SOURCE_DIR}/lib/libInSegLib_linux.a)
+	set(INSEG_LIB ${PROJECT_SOURCE_DIR}/lib/InSegLib.lib)
 endif()
 ################
 # Include dirs #
