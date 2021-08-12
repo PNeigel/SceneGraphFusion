@@ -10,7 +10,7 @@ ExternalProject_Add(Json_external
         BINARY_DIR Json-build
         UPDATE_COMMAND ""
         PATCH_COMMAND ""
-        BUILD_COMMAND make -j8
+        BUILD_COMMAND cmake --build .
         CMAKE_GENERATOR ${gen}
         CMAKE_ARGS
         -DCMAKE_BUILD_TYPE:STRING=Release
