@@ -1,4 +1,7 @@
-# SceneGraphFusion
+# SceneGraphFusion vor Visual Studio
+
+See changed build commands!
+
 ![teaser](img/teaser.png)
 **Authors**: [Shun-Cheng Wu][sc], [Johanna Wald][jojo], [Keisuke Tateno][keisu], [Nassir Navab][nassir] and [Federico Tombari][fede]
 
