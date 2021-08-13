@@ -70,9 +70,9 @@ cmake-gui ..
 Set the source code to the cloned SceneGraphFusion directory and "where to build the binaries" to ScenegraphFusion/build.
 Then, before you click configure, manually add the following variables as paths:
 ```
-OpenCV_CONFIG_DIR path/to/your/OpenCVConfig.cmake
+OpenCV_CONFIG_DIR path/to/directory/containing/OpenCVConfig.cmake
 GLFW_LOCATION path/to/GLFW/root
-Assimp_DIR path/to/AssimpConfig.cmake (for me it was AssimpRoot/lib/cmake/assimp-5.0)
+Assimp_DIR path/to/directory/containing/AssimpConfig.cmake (for me it was AssimpRoot/lib/cmake/assimp-5.0)
 ONNXROOT_DIR path/to/extracted/ONNX.nupkg
 ```
 Then click configure, set your Visual Studio compiler (e.g. 15 for VS2017), platform x64, and let it configure the first time.
@@ -83,6 +83,16 @@ BUILD_GUI=ON
 ```
 by clicking the checkboxes of the variables and configure again and it should be done. You will get some developer warnings, but hopefully no errors.
 Then click generate.
+
+Instead of cmake-gui you can use the following command
+```
+cmake .. -G "Visual Studio 15 2017 Win64" \
+-DOpenCV_CONFIG_DIR:PATH=path/to/directory/containing/OpenCVConfig.cmake \
+-DGLFW_LOCATION:PATH=path/to/GLFW/root \
+-DAssimp_DIR:PATH=path/to/directory/containing/AssimpConfig.cmake \
+-DONNXROOT_DIR:PATH=path/to/extracted/ONNX.nupkg \
+-DBUILD_GRAPHPRED=ON -DBUILD_GUI=ON
+```
 
 # Run
 ```
