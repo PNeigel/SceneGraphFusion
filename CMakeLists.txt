@@ -11,7 +11,7 @@ OPTION(USE_RENDEREDVIEW "Enable generating rendered view for ScanNet and 3RScan 
 ###################
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-function" )
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-function" )
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 #################################
@@ -24,7 +24,6 @@ SET(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR} ${CMAKE_PREFIX_PATH})
 # Add additional compiler flags #
 #################################
 IF(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-	MESSAGE("SETTING WNO UNUSED FUNCTION")
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libstdc++ -Wno-deprecated-declarations -Wno-unused-function")
 ENDIF()
 IF(NOT MSVC_IDE)
