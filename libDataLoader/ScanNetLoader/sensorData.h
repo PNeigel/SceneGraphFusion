@@ -41,6 +41,7 @@
 
 
 #ifdef WIN32
+#define NOMINMAX
 #include "windows.h"
 #include <tchar.h>
 #endif

@@ -15,3 +15,4 @@ SET(headers
 
 ADD_LIBRARY(${targetname} ${sources} ${headers})
 TARGET_INCLUDE_DIRECTORIES(${targetname} PUBLIC ./include)
+TARGET_INCLUDE_DIRECTORIES(${targetname} PUBLIC ${PROJECT_SOURCE_DIR})

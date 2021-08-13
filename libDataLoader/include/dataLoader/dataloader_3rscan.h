@@ -5,6 +5,9 @@
 #ifndef LIBSURFELRECONSTRUCTION_DATALOADER_3RSCAN_H
 #define LIBSURFELRECONSTRUCTION_DATALOADER_3RSCAN_H
 #include "dataset_loader.h"
+
+#define M_PI 3.14159265358979323846264338327950288
+
 namespace PSLAM {
     class DatasetLoader_3RScan : public DatasetLoader_base {
     public:
