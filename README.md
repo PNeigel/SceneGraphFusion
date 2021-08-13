@@ -1,5 +1,6 @@
 # SceneGraphFusion vor Visual Studio
 
+WORK IN PROGRESS, not yet building
 See changed build commands!
 
 ![teaser](img/teaser.png)
@@ -59,8 +60,13 @@ git submodule init
 git submodule update
 mkdir build
 cd build
-cmake .. -DOpenCV_CONFIG_DIR:PATH=path/to/your/OpenCVConfig.cmake -DGLFW_LOCATION:PATH=path/to/GLFW
-make
+cmake-gui ..
+```
+Before you click configure, set the source code to the cloned SceneGraphFusion directory and "where to build the binaries" to ScenegraphFusion/build.
+Then, add the following variables as paths:
+```
+OpenCV_CONFIG_DIR path/to/your/OpenCVConfig.cmake
+GLFW_LOCATION path/to/GLFWconfig.cmake (for me it was GLFWdir/lib/cmake/glfw3)
 ```
 build with GUI or graph prediction, pass these options in cmake:
 ```
