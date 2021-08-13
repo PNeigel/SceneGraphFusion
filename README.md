@@ -51,6 +51,11 @@ With graph prediction:
 # See https://github.com/microsoft/onnxruntime
 ```
 
+ONNX Runtime 1.8.1 Win64 C++ CUDA:
+https://www.nuget.org/api/v2/package/Microsoft.ML.OnnxRuntime.Gpu/1.8.1
+
+Can be extraced like any zip
+
 #### BUILD
 build the basic segmentation system 
 ```
@@ -62,17 +67,22 @@ mkdir build
 cd build
 cmake-gui ..
 ```
-Before you click configure, set the source code to the cloned SceneGraphFusion directory and "where to build the binaries" to ScenegraphFusion/build.
-Then, add the following variables as paths:
+Set the source code to the cloned SceneGraphFusion directory and "where to build the binaries" to ScenegraphFusion/build.
+Then, before you click configure, manually add the following variables as paths:
 ```
 OpenCV_CONFIG_DIR path/to/your/OpenCVConfig.cmake
-GLFW_LOCATION path/to/GLFWconfig.cmake (for me it was GLFWdir/lib/cmake/glfw3)
+GLFW_LOCATION path/to/GLFW/root
+Assimp_DIR path/to/AssimpConfig.cmake (for me it was AssimpRoot/lib/cmake/assimp-5.0)
+ONNXROOT_DIR path/to/extracted/ONNX.nupkg
 ```
-build with GUI or graph prediction, pass these options in cmake:
+Then click configure, set your Visual Studio compiler (e.g. 15 for VS2017), platform x64, and let it configure the first time.
+Then you can set set
 ```
-cmake -DBUILD_GRAPHPRED=ON -DBUILD_GUI=ON ..
+BUILD_GRAPHPRED=ON
+BUILD_GUI=ON
 ```
-Note that the graph prediction module is not yet released. You may encounter error if you build with `BUILD_GRAPHPRED=ON`. That part will be released soon.
+by clicking the checkboxes of the variables and configure again and it should be done. You will get some developer warnings, but hopefully no errors.
+Then click generate.
 
 # Run
 ```

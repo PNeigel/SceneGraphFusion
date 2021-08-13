@@ -9,20 +9,23 @@
 # And will create an interface library
 # OnnxRuntime
 
-FIND_PATH(ONNXROOT_DIR NAMES ./include/onnxruntime/core/session/onnxruntime_cxx_api.h
-        PATHS
-        /usr/local/
-        NO_DEFAULT_PATH
-)
+#FIND_PATH(ONNXROOT_DIR NAMES ./include/onnxruntime/core/session/onnxruntime_cxx_api.h
+#        PATHS
+#        /usr/local/
+#        NO_DEFAULT_PATH
+#)
+
 IF(ONNXROOT_DIR)
-    SET(OnnxRuntime_INCLUDE_DIRS  ${ONNXROOT_DIR}/include ${ONNXROOT_DIR}/include/onnxruntime/core/session)
+    #SET(OnnxRuntime_INCLUDE_DIRS  ${ONNXROOT_DIR}/include ${ONNXROOT_DIR}/include/onnxruntime/core/session)
+    SET(OnnxRuntime_INCLUDE_DIRS  ${ONNXROOT_DIR}/build/native/include)
 
     FIND_LIBRARY(OnnxRuntime_LIBRARY
             NAMES
+            onnxruntime.lib
             libonnxruntime.dylib
             libonnxruntime.so
             PATHS
-            ${ONNXROOT_DIR}/lib
+            ${ONNXROOT_DIR}/runtimes/win-x64/native
     )
 ENDIF(ONNXROOT_DIR)
 
@@ -40,7 +43,7 @@ find_package_handle_standard_args(OnnxRuntime
 
 if(OnnxRuntime_FOUND)
     if(NOT TARGET OnnxRuntime)
-        add_library(OnnxRuntime UNKNOWN IMPORTED)
+        add_library(OnnxRuntime SHARED IMPORTED)
         set_target_properties(OnnxRuntime PROPERTIES
                 INTERFACE_INCLUDE_DIRECTORIES "${OnnxRuntime_INCLUDE_DIRS}")
         set_target_properties(OnnxRuntime PROPERTIES
