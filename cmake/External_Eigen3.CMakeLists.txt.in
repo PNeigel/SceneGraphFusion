@@ -26,7 +26,7 @@ ExternalProject_Add(
         INSTALL_DIR  "${CMAKE_BINARY_DIR}/eigen3-external"
         UPDATE_COMMAND ""
         PATCH_COMMAND ""
-        BUILD_COMMAND cmake --build .
+        BUILD_COMMAND cmake --build . --target INSTALL --config Release
         CMAKE_GENERATOR ${gen}
         CMAKE_ARGS
         -DCMAKE_CXX_STANDARD=11
