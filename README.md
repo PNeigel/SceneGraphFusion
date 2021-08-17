@@ -15,13 +15,9 @@ See changed build commands!
 This is the SceneGraphFusion c++ framework. For the network part of the code, check [here](https://github.com/ShunChengWu/3DSSG).
 
 # Prerequisites
-## git, cmake
-```
-apt update
-apt install git
-# cmake
-sudo apt install python3-pip
-pip3 install cmake
+You should have git for windows, cmake/cmake-gui and python3 installed.
+To clone the repositories, you must have an SSH key, e.g. from puTTY, and pageant (puTTY authentication agent) should be running with your key.
+
 # create ssh key and associate to your account in order to clone this project.
 # * Generate new ssh key [link](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 # * Adding a new ssh key to your account [link](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
@@ -35,14 +31,14 @@ pip3 install cmake
 # Assimp
 loading meshes for online rendered view generation. 
 ```
-apt install libassimp-dev
+download & build assimp: https://www.assimp.org/
 ```
 
 # Optional dependencies
 With GUI:
 ```
 # OpenGL & Glfw3
-apt install freeglut3-dev libglfw3-dev
+download & build: http://freeglut.sourceforge.net/    https://www.glfw.org/download
 
 ```
 With graph prediction:
