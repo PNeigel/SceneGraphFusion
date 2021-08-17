@@ -4,6 +4,7 @@
 #include <ORUtils/Logging.h>
 #include <random>
 #include <algorithm>
+#include <numeric>
 using namespace PSLAM;
 
 Node::Node(int label): idx(label), mIdxCounter(0) {

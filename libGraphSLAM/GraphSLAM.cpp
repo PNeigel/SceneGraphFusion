@@ -9,6 +9,7 @@
 #include <tinyply.h>
 #endif
 #include <memory>
+#undef ERROR
 
 using namespace PSLAM;
 
@@ -97,6 +98,7 @@ void GraphSLAM::ProcessFrame(int idx, const cv::Mat &colorImage, const cv::Mat &
 #ifdef COMPILE_WITH_GRAPHPRED
     if(mpGraphPredictor->Pin()){
         SCLOG(ERROR) << "prediction thread is dead.";
+		//(*ORUtils::logging::Logger::GetInstance()) += ORUtils::logging::Logger::Record(ORUtils::logging::2, "C:\\Files\\Repos\\scenegraphfusion\\SceneGraphFusion\\libGraphSLAM\\GraphSLAM.cpp",  __FUNCTION__  , 99) += ORUtils::logging::Message() << "prediction thread is dead.";
     }
 #endif
 }
