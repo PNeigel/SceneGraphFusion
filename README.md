@@ -74,6 +74,7 @@ OpenCV_CONFIG_DIR path/to/directory/containing/OpenCVConfig.cmake
 GLFW_LOCATION path/to/GLFW/root
 Assimp_DIR path/to/directory/containing/AssimpConfig.cmake (for me it was AssimpRoot/lib/cmake/assimp-5.0)
 ONNXROOT_DIR path/to/extracted/ONNX.nupkg
+DIRENT_INCLUDE_DIR path/to/dirent/include
 ```
 Then click configure, set your Visual Studio compiler (e.g. 15 for VS2017), platform x64, and let it configure the first time.
 Then you can set set
@@ -91,6 +92,7 @@ cmake .. -G "Visual Studio 15 2017 Win64" \
 -DGLFW_LOCATION:PATH=path/to/GLFW/root \
 -DAssimp_DIR:PATH=path/to/directory/containing/AssimpConfig.cmake \
 -DONNXROOT_DIR:PATH=path/to/extracted/ONNX.nupkg \
+-DDIRENT_INCLUDE_DIR:PATH=path/to/dirent/include \
 -DBUILD_GRAPHPRED=ON -DBUILD_GUI=ON
 ```
 
