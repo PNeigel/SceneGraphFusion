@@ -6,6 +6,18 @@
 #define GRAPHSLAM_ONNXMODELBASE_H
 #include "ParamLoader.h"
 #include <onnxruntime_cxx_api.h>
+#include <string>
+#include <stdexcept>
+
+std::wstring to_wstring(std::string const& str)
+{
+	size_t len = mbstowcs(nullptr, &str[0], 0);
+	if (len == -1) throw std::invalid_argument("Length of string '" + str + "' was -1.");
+	std::wstring wstr(len, 0);
+	mbstowcs(&wstr[0], &str[0], wstr.size());
+	return wstr;
+}
+
 namespace PSLAM {
     namespace ONNX {
         template<typename T>
@@ -84,7 +96,9 @@ namespace PSLAM {
                 sessionOptions.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_ALL);
                 sessionOptions.SetExecutionMode(ExecutionMode::ORT_SEQUENTIAL);
                 for(auto &pair:mModelParams) {
-                    mSessions[pair.first] = std::make_unique< Ort::Session>(*pOrtEnv, (pth_base + pair.second->model_path).c_str(), sessionOptions);
+					const wchar_t* _model_path = to_wstring((pth_base + pair.second->model_path)).c_str();
+					mSessions[pair.first] = std::make_unique< Ort::Session>(*pOrtEnv, _model_path, sessionOptions);
+                    //mSessions[pair.first] = std::make_unique< Ort::Session>(*pOrtEnv, (pth_base + pair.second->model_path).c_str(), sessionOptions);
                 }
             }
 

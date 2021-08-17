@@ -71,14 +71,14 @@ std::tuple<MemoryBlock2D, MemoryBlock2D> EatGCN::Run(
     auto edge_descriptor = DataUtil::compute_edge_descriptor(descriptor, edge_index, source_to_target);
     if (bVerbose) {
         PrintVector("Edges", edge_index.Get<int64_t>(),
-                    std::vector<unsigned long>{edge_index.mDims.x, edge_index.mDims.y});
+                    std::vector<unsigned long>{(unsigned long)edge_index.mDims.x, (unsigned long)edge_index.mDims.y});
         PrintVector("descriptor", descriptor.Get<float>(),
-                    std::vector<unsigned long>{descriptor.mDims.x, descriptor.mDims.y});
+                    std::vector<unsigned long>{(unsigned long)descriptor.mDims.x, (unsigned long)descriptor.mDims.y});
         // print first node
         PrintVector("input_nodes", input_nodes.Get<float>(),
                     std::vector<size_t>{input_nodes.mDims.y, input_nodes.mDims.z});
         PrintVector("edge_descriptor", edge_descriptor.Get<float>(),
-                    std::vector<unsigned long>{edge_descriptor.mDims.x, edge_descriptor.mDims.y});
+                    std::vector<unsigned long>{(unsigned long)edge_descriptor.mDims.x, (unsigned long)edge_descriptor.mDims.y});
         for (size_t i = 0; i < edge_descriptor.mDims.y; ++i) {
             std::cerr << edge_descriptor.at<float>(0, i) << " ";
         }
@@ -236,8 +236,12 @@ void EatGCN::InitModel(){
     sessionOptions.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_ALL);
     sessionOptions.SetExecutionMode(ExecutionMode::ORT_SEQUENTIAL);
     for (auto &pair:mModelParams) {
-        mSessions[pair.first] = std::make_unique<Ort::Session>(*pOrtEnv,
-                                                               (pth_base + pair.second->model_path).c_str(),
-                                                               sessionOptions);
+		const wchar_t* _model_path = to_wstring((pth_base + pair.second->model_path)).c_str();
+		mSessions[pair.first] = std::make_unique<Ort::Session>(*pOrtEnv,
+															_model_path,
+															sessionOptions);
+        //mSessions[pair.first] = std::make_unique<Ort::Session>(*pOrtEnv,
+        //                                                       (pth_base + pair.second->model_path).c_str(),
+        //                                                       sessionOptions);
     }
 }

@@ -6,6 +6,7 @@
 #include "MemoryBlock.h"
 #include "OnnxModelBase.h"
 #include <ORUtils/LogUtil.h>
+#undef ERROR
 using namespace PSLAM;
 
 void find_nodes_has_same_part(const std::map<int, NodePtr> &nodes, unsigned int s_idx, int t_idx, std::set<int> &has,
@@ -672,7 +673,7 @@ void GraphPredictor::UpdateGCNFeature(const std::map<int,NodePtr> &vNodes, size_
     CTOCK("[UpdateGCNFeature]3.copyNodeFeature");
 
     if(mDebug)
-    ONNX::PrintVector<float,unsigned long>("nodeFeature", nodeFeatures.Get<float>(), {selected_nodes.size(), static_cast<unsigned long>(dim_obj_f)});
+    ONNX::PrintVector<float,unsigned long>("nodeFeature", nodeFeatures.Get<float>(), {(unsigned long)selected_nodes.size(), static_cast<unsigned long>(dim_obj_f)});
 
     /// Build Edge Input
     int64_t dim_rel_f = GetParams().at("dim_r_f").int_value();
@@ -704,7 +705,7 @@ void GraphPredictor::UpdateGCNFeature(const std::map<int,NodePtr> &vNodes, size_
     CTOCK("[UpdateGCNFeature]4.copyEdgeFeature");
 
     if(mDebug)
-    ONNX::PrintVector<float,unsigned long>("edgeFeatures", edgeFeatures.Get<float>(), {n_edges, static_cast<unsigned long>(dim_rel_f)});
+    ONNX::PrintVector<float,unsigned long>("edgeFeatures", edgeFeatures.Get<float>(), { (unsigned long)n_edges, static_cast<unsigned long>(dim_rel_f)});
 
     /// Compute
     SCLOG(VERBOSE) << "compute";
