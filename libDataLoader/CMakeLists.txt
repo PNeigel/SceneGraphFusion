@@ -6,6 +6,7 @@ INCLUDE(UseEigen3)
 SET(sources
         src/dataloader_scannet.cpp
         src/dataloader_3rscan.cpp
+        src/dataloader_stereo.cpp
         ScanNetLoader/sensorData.cpp
 )
 SET(headers

@@ -1,8 +1,10 @@
 #pragma once
 #include "dataset3RScan.h"
 #include "datasetScanNet.h"
+#include "datasetStereo.h"
 #include "dataloader_3rscan.h"
 #include "dataloader_scannet.h"
+#include "dataloader_stereo.h"
 
 namespace PSLAM {
     struct  DataLoaderFactory {
@@ -23,7 +25,6 @@ namespace PSLAM {
                 } else if (pth.find("stereo") != std::string::npos) {
                     inputeType = DATASET_STEREO;
                     std::cerr << "Stereo";
-                    std::cout << "Detected Stereo Dataset!" << std::endl;
                 }
             }
 
@@ -38,6 +39,11 @@ namespace PSLAM {
                 case DATASET_SCANNET: {
                     auto database = std::make_shared<ScanNetDataset>(inputeType, pth);
                     output = new DatasetLoader_ScanNet(database);
+                    break;
+                }
+                case DATASET_STEREO: {
+                    auto database = std::make_shared<StereoDataset>(inputeType, pth);
+                    output = new DatasetLoader_Stereo(database);
                     break;
                 }
                 case DATASET_DETECT:
