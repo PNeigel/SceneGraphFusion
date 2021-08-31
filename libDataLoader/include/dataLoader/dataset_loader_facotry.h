@@ -12,6 +12,7 @@ namespace PSLAM {
             // detect datatype by checking file name
 
             if(inputeType == DATASET_DETECT){
+
                 std::cerr << "detect data type: ";
                 if(pth.find(".sens") != std::string::npos || pth.find("scene") != std::string::npos) {
                     inputeType = DATASET_SCANNET;
@@ -20,8 +21,9 @@ namespace PSLAM {
                     inputeType = DATASET_3RSCAN;
                     std::cerr << "3RScan";
                 } else if (pth.find("stereo") != std::string::npos) {
-                    inputeType = DTASET_STEREO;
+                    inputeType = DATASET_STEREO;
                     std::cerr << "Stereo";
+                    std::cout << "Detected Stereo Dataset!" << std::endl;
                 }
             }
 
