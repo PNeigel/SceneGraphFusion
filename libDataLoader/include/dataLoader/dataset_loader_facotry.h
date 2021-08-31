@@ -16,9 +16,12 @@ namespace PSLAM {
                 if(pth.find(".sens") != std::string::npos || pth.find("scene") != std::string::npos) {
                     inputeType = DATASET_SCANNET;
                     std::cerr << "ScanNet";
-                } else {
+                } else if (pth.find("3RScan") != std::string::npos) {
                     inputeType = DATASET_3RSCAN;
                     std::cerr << "3RScan";
+                } else if (pth.find("stereo") != std::string::npos) {
+                    inputeType = DTASET_STEREO;
+                    std::cerr << "Stereo";
                 }
             }
 

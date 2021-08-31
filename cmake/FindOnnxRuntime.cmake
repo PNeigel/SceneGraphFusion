@@ -9,14 +9,17 @@
 # And will create an interface library
 # OnnxRuntime
 
-FIND_PATH(ONNXROOT_DIR NAMES ./include/onnxruntime/core/session/onnxruntime_cxx_api.h
+FIND_PATH(ONNXROOT_DIR
+        #NAMES ./include/onnxruntime/core/session/onnxruntime_cxx_api.h
+        NAMES ./include/onnxruntime/onnxruntime_cxx_api.h
         PATHS
         /usr/local/
+        ~/.local/
         NO_DEFAULT_PATH
 )
 IF(ONNXROOT_DIR)
-    SET(OnnxRuntime_INCLUDE_DIRS  ${ONNXROOT_DIR}/include ${ONNXROOT_DIR}/include/onnxruntime/core/session)
-
+    #SET(OnnxRuntime_INCLUDE_DIRS  ${ONNXROOT_DIR}/include ${ONNXROOT_DIR}/include/onnxruntime/core/session)
+    SET(OnnxRuntime_INCLUDE_DIRS  ${ONNXROOT_DIR}/include ${ONNXROOT_DIR}/include/onnxruntime)
     FIND_LIBRARY(OnnxRuntime_LIBRARY
             NAMES
             libonnxruntime.dylib
