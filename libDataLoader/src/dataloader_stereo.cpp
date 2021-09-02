@@ -66,6 +66,7 @@ DatasetLoader_Stereo::DatasetLoader_Stereo(std::shared_ptr<DatasetDefinitionBase
     if(!LoadInfoIntrinsics(m_dataset->folder+"/_info.txt",false,m_cam_param_rgb))
         throw std::runtime_error("unable to open _info file");
     m_poseTransform.setIdentity();
+    /*
     if(reinterpret_cast<PSLAM::StereoDataset*>(m_dataset.get())->use_aligned_pose) {
         auto seq_folder = tools::PathTool::find_parent_folder(m_dataset->folder,1);
         auto seq_name = tools::PathTool::getFileName(seq_folder);
@@ -78,6 +79,7 @@ DatasetLoader_Stereo::DatasetLoader_Stereo(std::shared_ptr<DatasetDefinitionBase
             m_poseTransform.topRightCorner<3,1>()*=1e3;
         }
     }
+    */
 }
 
 const std::string DatasetLoader_Stereo::GetFileName(const std::string& folder,
@@ -139,8 +141,10 @@ bool DatasetLoader_Stereo::Retrieve() {
     if (m_dataset->rotate_pose_img) {
         cv::rotate(m_d, m_d, cv::ROTATE_90_COUNTERCLOCKWISE);
     }
+    // Reads pose_file_name's content into m_pose,
+    // bool rotate (here m_dataset->rotate_pose_img) is ignored in LoadPose
     LoadPose(m_pose, pose_file_name_,m_dataset->rotate_pose_img);
-    m_pose = m_poseTransform * m_pose;
+    //m_pose = m_poseTransform * m_pose;
     frame_index += m_dataset->frame_index_counter;
     return true;
 }

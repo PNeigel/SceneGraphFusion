@@ -153,8 +153,11 @@ int main(int argc, char** argv) {
     }
     SCLOG(INFO) << "Buliding data loader...";
     std::shared_ptr<PSLAM::DatasetLoader_base> dataset_loader_;
-    dataset_loader_.reset(PSLAM::DataLoaderFactory::Make(path));
+    dataset_loader_.reset(PSLAM::DataLoaderFactory::Make(
+        path));
     dataset_loader_->Reset();
+
+    SCLOG(INFO) << "Successfully created dataset loader.";
 
     if(params.use_render) {
         if (path.find("scene") == std::string::npos) dataset_loader_->GetCamParamDepth() = dataset_loader_->GetCamParamRGB();

@@ -24,7 +24,7 @@ namespace PSLAM {
                     std::cerr << "3RScan";
                 } else if (pth.find("stereo") != std::string::npos) {
                     inputeType = DATASET_STEREO;
-                    std::cerr << "Stereo";
+                    std::cerr << "Stereo\n";
                 }
             }
 
