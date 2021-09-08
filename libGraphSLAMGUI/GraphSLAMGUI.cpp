@@ -1165,13 +1165,25 @@ void GraphSLAMGUI::SetRender(int width, int height, const std::string &path, boo
         scan_id = tools::PathTool::getFileName(parent_folder);
         folder =  tools::PathTool::find_parent_folder(parent_folder, 1);
         type = PSLAM::MeshRenderType_ScanNet;
+    } else if (path.find("stereo") != std::string::npos){
+        auto seq_folder = tools::PathTool::find_parent_folder(path,1);
+        scan_id = tools::PathTool::getFileName(seq_folder);
+        folder = tools::PathTool::find_parent_folder(seq_folder,1);
+        type = PSLAM::MeshRenderType_Stereo;
     } else {
         auto seq_folder = tools::PathTool::find_parent_folder(path,1);
         scan_id = tools::PathTool::getFileName(seq_folder);
         folder = tools::PathTool::find_parent_folder(seq_folder,1);
         type = PSLAM::MeshRenderType_3RScan;
     }
+    std::cout << "Width: " << width << std::endl;
+    std::cout << "height: " << height << std::endl;
+    std::cout << "folder: " << folder << std::endl;
+    std::cout << "scan_id: " << scan_id << std::endl;
+    std::cout << "type: " << type << std::endl;
+    std::cout << "align: " << align << std::endl;
     mMeshRender.reset( PSLAM::MakeMeshRenderer(width, height, folder,scan_id,type,align) );
+    std::cout << "reset mesh renderer" << std::endl;
 #else
     throw std::runtime_error("did not compile with assimp");
 #endif

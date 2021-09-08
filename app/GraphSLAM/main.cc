@@ -206,10 +206,11 @@ int main(int argc, char** argv) {
     PSLAM::GraphSLAM graphSlam(&configPslam, dataset_loader_->GetCamParamDepth());
 
 #ifdef COMPILE_WITH_PSLAM_GUI
-    SCLOG(INFO) << "start gui...";
     PSLAM::GraphSLAMGUI gui(&graphSlam, dataset_loader_.get());
     if(params.use_render) gui.SetRender(dataset_loader_->GetCamParamDepth().width,dataset_loader_->GetCamParamDepth().height,path, true);
+    SCLOG(INFO) << "gui SetRender() ran";
     gui.run();
+    SCLOG(INFO) << "gui running";
 #else
     SCLOG(INFO) << "start processing frames...";
     while (true) {
