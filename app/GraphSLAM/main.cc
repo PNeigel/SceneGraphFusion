@@ -209,7 +209,8 @@ int main(int argc, char** argv) {
     PSLAM::GraphSLAMGUI gui(&graphSlam, dataset_loader_.get());
     if(params.use_render) gui.SetRender(dataset_loader_->GetCamParamDepth().width,dataset_loader_->GetCamParamDepth().height,path, true);
     SCLOG(INFO) << "gui SetRender() ran";
-    gui.run();
+    gui.run(); // declared/defined in libGUI3D/libgui/GUI.{h,cpp} class GUI_base
+    // GUI_base::run() polls window events, renders ImGui menu, draws frames and swaps buffers
     SCLOG(INFO) << "gui running";
 #else
     SCLOG(INFO) << "start processing frames...";
@@ -260,6 +261,7 @@ int main(int argc, char** argv) {
         if(params.save_time) {
             SCSLAM::EVALUATION::Logging::printResultToFile(params.pth_out, "times.txt");
 #ifdef COMPILE_WITH_GRAPHPRED
+            SCLOG(INFO) << "Entered COMPILE_WITH_GRAPHPRED prepr. gate.";
             if(graphSlam.GetGraphPred()) {
                 const auto &times = graphSlam.GetGraphPred()->GetTimes();
                 for (const auto &pair: times) {
