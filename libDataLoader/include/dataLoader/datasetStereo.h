@@ -33,6 +33,8 @@ namespace PSLAM {
             min_pyr_level = 3;
             number_pose = 6;
             number_length = 6;
+            max_depth = 20000; //mm
+            //rotate_pose_img = false;
         }
         bool use_aligned_pose = true;
     };

@@ -139,7 +139,7 @@ bool DatasetLoader_Stereo::Retrieve() {
         m_rgb = cv::imread(colorFilename, -1);
     }
     if (m_dataset->rotate_pose_img) {
-        cv::rotate(m_d, m_d, cv::ROTATE_90_COUNTERCLOCKWISE);
+        //cv::rotate(m_d, m_d, cv::ROTATE_90_COUNTERCLOCKWISE);
     }
     // Reads pose_file_name's content into m_pose,
     // bool rotate (here m_dataset->rotate_pose_img) is ignored in LoadPose

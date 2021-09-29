@@ -392,8 +392,8 @@ void GraphSLAMGUI::Process(){
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
     if(bNeedUpdateTexture){
-        cv::Mat rgb;
-        cv::cvtColor(mRGB,rgb,cv::COLOR_BGR2RGB);
+        cv::Mat rgb = mRGB.clone();
+        //cv::cvtColor(mRGB,rgb,cv::COLOR_BGR2RGB);
         cv::flip(rgb, rgb, 0);
         if (dynamic_cast<DatasetLoader_3RScan*>(mpDataLoader))
             cv::rotate(rgb, rgb, cv::ROTATE_90_COUNTERCLOCKWISE);
@@ -409,14 +409,15 @@ void GraphSLAMGUI::Process(){
         cv::minMaxIdx(greyImage, &min, &max);
         cv::Mat adjMap;
         cv::convertScaleAbs(greyImage, adjMap, 255 / max);
+        //cv::imwrite("/home/neigel/tmp/tmp_adjMap.jpg", adjMap);
         mImageDrawer[1].Update(adjMap.ptr(),
                                adjMap.cols,
                                adjMap.rows);
 
         cv::Mat flipLabel;
         cv::flip(mpGraphSLAM->GetInSeg()->GetSegmentedLabelMap(),flipLabel, 0);
-        if (dynamic_cast<DatasetLoader_3RScan*>(mpDataLoader))
-            cv::rotate(flipLabel, flipLabel, cv::ROTATE_90_COUNTERCLOCKWISE);
+        //if (dynamic_cast<DatasetLoader_3RScan*>(mpDataLoader))
+        //    cv::rotate(flipLabel, flipLabel, cv::ROTATE_90_COUNTERCLOCKWISE);
         mImageDrawer[2].Update(flipLabel.ptr(),
                                flipLabel.cols,
                                flipLabel.rows);
@@ -426,9 +427,10 @@ void GraphSLAMGUI::Process(){
         bool scannet = false;
         const int size = 3;
         const float sub_window_height = (windowHeight-(0*size+2)) / size;
-        const float sub_window_width = scannet ?
-                                       sub_window_height*(static_cast<float>(mpDataLoader->GetDepthImage().cols)/static_cast<float>(mpDataLoader->GetDepthImage().rows)) :
-                                       sub_window_height*(static_cast<float>(mpDataLoader->GetDepthImage().rows)/static_cast<float>(mpDataLoader->GetDepthImage().cols));
+        //const float sub_window_width = scannet ?
+        //                               sub_window_height*(static_cast<float>(mpDataLoader->GetDepthImage().cols)/static_cast<float>(mpDataLoader->GetDepthImage().rows)) :
+        //                               sub_window_height*(static_cast<float>(mpDataLoader->GetDepthImage().rows)/static_cast<float>(mpDataLoader->GetDepthImage().cols));
+        const float sub_window_width = sub_window_height*(static_cast<float>(mpDataLoader->GetDepthImage().cols)/static_cast<float>(mpDataLoader->GetDepthImage().rows));
         int i=0;
         for(auto &drawer: mImageDrawer){
             glViewport(windowWidth - sub_window_width,
@@ -487,7 +489,7 @@ bool GraphSLAMGUI::ProcessSLAM(){
                                                glCam->projection_control_->near,glCam->projection_control_->far);
         cv::Mat t_rgb;
         mMeshRender->Render(proj,view_pose,glCam->projection_control_->near,glCam->projection_control_->far);
-        mDepth = mMeshRender->GetDepth();
+        //mDepth = mMeshRender->GetDepth();
     }
 #endif
     const Eigen::Matrix4f pose_inv = pose.inverse();
